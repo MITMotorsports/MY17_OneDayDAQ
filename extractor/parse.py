@@ -18,29 +18,6 @@ def frequency(freq_str):
     else:
         raise ValueError('Unrecognized frequency unit {}.'.format(unit))
 
-def message_line(line):
-    assert line.startswith('MESSAGE_NAME')
-
-    message_parts = line.split()
-    name = can_id = l_endian = freq = None
-    result = {}
-
-    for message_part in message_parts:
-        part = message_part.split('=')
-
-        if part[0] == 'MESSAGE_NAME':
-            result['name'] = part[1]
-        elif part[0] == 'ID':
-            result['can_id'] = number(part[1])
-        elif part[0] == 'ENDIAN':
-            result['l_endian'] = True if part[1] == 'LITTLE' else False
-        elif part[0] == 'FREQ':
-            result['freq'] = frequency(part[1])
-        else:
-            raise ValueError('Unrecognized parameter {}.'.format(part[0]))
-
-    return result
-
 def number(num, reverse_endian=False):
     '''
     Parses a number. Reverses its endianess if `reverse_endian`.

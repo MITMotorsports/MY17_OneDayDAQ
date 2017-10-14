@@ -1,11 +1,11 @@
 #############################################################
 #                  CAN Node SPEC                            #
-#           May need to listen to IDs: None                 #
+#           May need to listen to can_ids: None                 #
 #############################################################
 
 # ENDIAN: BIG
 FRONT_CAN_NODE_DRIVER_OUTPUT:
-  ID: 0x030
+  can_id: 0x030
   frequency: 50HZ
   segments:
     REQUESTED_TORQUE:
@@ -45,7 +45,7 @@ FRONT_CAN_NODE_DRIVER_OUTPUT:
 
 # ENDIAN: BIG
 REAR_CAN_NODE_HEARTBEAT:
-  ID: 0x031
+  can_id: 0x031
   frequency: 1HZ
   segments:
     IS_OK:
@@ -56,7 +56,7 @@ REAR_CAN_NODE_HEARTBEAT:
 
 # ENDIAN: BIG
 REAR_CAN_NODE_WHEEL_SPEED:
-  ID: 0x032
+  can_id: 0x032
   frequency: 50HZ
   segments:
     REAR_RIGHT_WHEEL_SPEED:
@@ -71,7 +71,7 @@ REAR_CAN_NODE_WHEEL_SPEED:
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 FRONT_CAN_NODE_RAW_VALUES:
-  ID: 0x230
+  can_id: 0x230
   frequency: 10HZ
   segments:
     RIGHT_THROTTLE_POT:
@@ -98,7 +98,7 @@ FRONT_CAN_NODE_RAW_VALUES:
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 FRONT_CAN_NODE_WHEEL_SPEED:
-  ID: 0x231
+  can_id: 0x231
   frequency: 50HZ
   segments:
     FRONT_RIGHT_WHEEL_SPEED:
@@ -112,12 +112,12 @@ FRONT_CAN_NODE_WHEEL_SPEED:
 
 #############################################################
 #                   VCU SPEC                                #
-#           May need to listen to IDs: TODO                 #
+#           May need to listen to can_ids: TODO                 #
 #############################################################
 
 # ENDIAN: BIG
 VCU_BMS_HEARTBEAT:
-  ID: 0x050
+  can_id: 0x050
   frequency: 1HZ
   segments:
     STATE:
@@ -127,7 +127,7 @@ VCU_BMS_HEARTBEAT:
 
 # ENDIAN: BIG
 VCU_DASH_HEARTBEAT:
-  ID: 0x51
+  can_id: 0x51
   frequency: 10HZ
   segments:
     RTD_LIGHT:
@@ -283,9 +283,9 @@ VCU_DASH_HEARTBEAT:
 
 # ENDIAN: LITTLE
 VCU_MC_MESSAGE:
-  ID: 0x52
+  can_id: 0x52
   segments:
-    REG_ID:
+    REG_can_id:
       position: [0, 7]
       values:
         MSG_REQUEST: 0x3D
@@ -302,7 +302,7 @@ VCU_MC_MESSAGE:
 
 #############################################################
 #                      BMS SPEC                             #
-#           May need to listen to IDs: None                 #
+#           May need to listen to can_ids: None                 #
 #############################################################
 
 # Precision:
@@ -310,11 +310,11 @@ VCU_MC_MESSAGE:
 # pack current: 10 bits
 # cell voltage: 10 bits
 # temperate:    8 bits
-# cell ID:   >:  7 bits
+# cell can_id:   >:  7 bits
 
 # ENDIAN: BIG
 BMS_HEARTBEAT:
-  ID: 0x060
+  can_id: 0x060
   frequency: 1HZ
   segments:
     STATE:
@@ -350,7 +350,7 @@ BMS_HEARTBEAT:
 # ENDIAN: BIG
 #################### DASH_ONLY #########################
 BMS_CELL_TEMPS:
-  ID: 0x160
+  can_id: 0x160
   frequency: 1HZ
   segments:
     AVE_CELL_TEMP:
@@ -359,20 +359,20 @@ BMS_CELL_TEMPS:
     MIN_CELL_TEMP:
       position: [15, 29]
       values:
-    MIN_CELL_TEMP_ID:
+    MIN_CELL_TEMP_can_id:
       position: [30, 38]
       values:
     MAX_CELL_TEMP:
       position: [39, 53]
       values:
-    MAX_CELL_TEMP_ID:
+    MAX_CELL_TEMP_can_id:
       position: [54, 62]
       values:
 
 # ENDIAN: BIG
 #################### DASH_ONLY #########################
 BMS_PACK_STATUS:
-  ID: 0x161
+  can_id: 0x161
   frequency: 10HZ
   segments:
     PACK_VOLTAGE:
@@ -392,23 +392,23 @@ BMS_PACK_STATUS:
       position: [30, 39]
       values:
         MIN_CELL_VOLTAGE: [0x000, 0x3FF]
-    MIN_CELL_VOLTAGE_ID:
+    MIN_CELL_VOLTAGE_can_id:
       position: [40, 46]
       values:
-        MIN_CELL_VOLTAGE_ID: [0x00, 0x7F]
+        MIN_CELL_VOLTAGE_can_id: [0x00, 0x7F]
     MAX_CELL_VOLTAGE:
       position: [47, 56]
       values:
         MAX_CELL_VOLTAGE: [0x000, 0x3FF]
-    MAX_CELL_VOLTAGE_ID:
+    MAX_CELL_VOLTAGE_can_id:
       position: [57, 63]
       values:
-        MAX_CELL_VOLTAGE_ID: [0x00, 0x7F]
+        MAX_CELL_VOLTAGE_can_id: [0x00, 0x7F]
 
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 BMS_ERRORS:
-  ID: 0x260
+  can_id: 0x260
   frequency: 0.1HZ
   segments:
     ERROR_TYPE:
@@ -432,12 +432,12 @@ BMS_ERRORS:
 
 #############################################################
 #                      Dash SPEC                             #
-#           May need to listen to IDs: None                 #
+#           May need to listen to can_ids: None                 #
 #############################################################
 
 # ENDIAN: BIG
 DASH_HEARTBEAT:
-  ID: 0x70
+  can_id: 0x70
   frequency: 1HZ
   segments:
     HEARTBEAT_ON:
@@ -448,7 +448,7 @@ DASH_HEARTBEAT:
 
 # ENDIAN: BIG
 DASH_REQUEST:
-  ID: 0x71
+  can_id: 0x71
   segments:
     REQUEST_TYPE:
       position: [0, 3]
@@ -468,15 +468,15 @@ DASH_REQUEST:
 
 #############################################################
 #                   MC SPEC                                 #
-#           May need to listen to IDs: TODO                 #
+#           May need to listen to can_ids: TODO                 #
 #############################################################
 
 # ENDIAN: LITTLE
 #################### LOGGING_ONLY #########################
 MC_RESPONSE:
-  ID: 0x310
+  can_id: 0x310
   segments:
-    REG_ID:
+    REG_can_id:
       position: [0, 7]
       values:
         CURRENT_CMD: 0x26
@@ -505,13 +505,13 @@ MC_RESPONSE:
 
 #############################################################
 #                  Current Sensor SPEC                      #
-#           May need to listen to IDs: None                 #
+#           May need to listen to can_ids: None                 #
 #############################################################
 
 # Units of mA
 # ENDIAN: BIG
 CURRENT_SENSOR_CURRENT:
-  ID: 0x521
+  can_id: 0x521
   frequency: 20HZ
   segments:
     PACK_CURRENT:
@@ -522,7 +522,7 @@ CURRENT_SENSOR_CURRENT:
 # Units of mV
 # ENDIAN: BIG
 CURRENT_SENSOR_VOLTAGE:
-  ID: 0x522
+  can_id: 0x522
   frequency: 20HZ
   segments:
     PACK_VOLTAGE:
@@ -533,7 +533,7 @@ CURRENT_SENSOR_VOLTAGE:
 # Units of W
 # ENDIAN: BIG
 CURRENT_SENSOR_POWER:
-  ID: 0x526
+  can_id: 0x526
   frequency: 20HZ
   segments:
     PACK_POWER:
@@ -544,7 +544,7 @@ CURRENT_SENSOR_POWER:
 # Units of Wh
 # ENDIAN: BIG
 CURRENT_SENSOR_ENERGY:
-  ID: 0x528
+  can_id: 0x528
   frequency: 20HZ
   segments:
     PACK_ENERGY:
@@ -554,14 +554,14 @@ CURRENT_SENSOR_ENERGY:
 
 #############################################################
 #                  Black Box SPEC                           #
-#           May need to listen to IDs: All                  #
+#           May need to listen to can_ids: All                  #
 #############################################################
 
 # Units of mV
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 LV_BATTERY_VOLTAGE:
-  ID: 0x333
+  can_id: 0x333
   frequency: 1HZ
   segments:
     BATTERY_VOLTAGE:
@@ -574,7 +574,7 @@ LV_BATTERY_VOLTAGE:
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 ACCELEROMETER_HORIZONTAL:
-  ID: 0x343
+  can_id: 0x343
   frequency: 10HZ
   segments:
     X_AXIS:
@@ -589,7 +589,7 @@ ACCELEROMETER_HORIZONTAL:
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 ACCELEROMETER_VERTICAL:
-  ID: 0x344
+  can_id: 0x344
   frequency: 10HZ
   segments:
     Z_AXIS:
@@ -600,7 +600,7 @@ ACCELEROMETER_VERTICAL:
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 GYRO_HORIZONTAL:
-  ID: 0x353
+  can_id: 0x353
   frequency: 10HZ
   segments:
     X_AXIS:
@@ -615,7 +615,7 @@ GYRO_HORIZONTAL:
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 GYRO_VERTICAL:
-  ID: 0x354
+  can_id: 0x354
   frequency: 10HZ
   segments:
     Z_AXIS:
@@ -626,7 +626,7 @@ GYRO_VERTICAL:
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 MAGNETOMETER_HORIZONTAL:
-  ID: 0x363
+  can_id: 0x363
   frequency: 10HZ
   segments:
     X_AXIS:
@@ -641,7 +641,7 @@ MAGNETOMETER_HORIZONTAL:
 # ENDIAN: BIG
 #################### LOGGING_ONLY #########################
 MAGNETOMETER_VERTICAL:
-  ID: 0x364
+  can_id: 0x364
   frequency: 10HZ
   segments:
     Z_AXIS:
