@@ -1,0 +1,650 @@
+#############################################################
+#                  CAN Node SPEC                            #
+#           May need to listen to IDs: None                 #
+#############################################################
+
+# ENDIAN: BIG
+FRONT_CAN_NODE_DRIVER_OUTPUT:
+  ID: 0x030
+  frequency: 50HZ
+  segments:
+    REQUESTED_TORQUE:
+      position: [0, 15]
+      values:
+        POSITIVE_TORQUE: [0x0000, 0x7FFF]
+        NEGATIVE_TORQUE: [0x8000, 0xFFFF]
+    BRAKE_PRESSURE:
+      position: [16, 23]
+      values:
+        BRAKE_PRESSURE: [0x00, 0xFF]
+    STEERING_POSITION:
+      position: [24, 31]
+      values:
+        STEERING_TRAVEL_LEFTWARDS: [0x00, 0xFF]
+    THROTTLE_IMPLAUSIBLE:
+      position: [32, 32]
+      values:
+        PLAUSIBLE: 0x0
+        IMPLAUSIBLE: 0x1
+    BRAKE_THROTTLE_CONFLICT:
+      position: [33, 33]
+      values:
+        NO_CONFLICT: 0x0
+        CONFLICT: 0x1
+    BRAKE_ENGAGED:
+      position: [34, 34]
+      values:
+        RELEASED: 0x0
+        ENGAGED: 0x1
+    RESERVED:
+      position: [35, 39]
+      values:
+    TORQUE_BEFORE_CONTROL:
+      position: [40, 55]
+      values:
+
+# ENDIAN: BIG
+REAR_CAN_NODE_HEARTBEAT:
+  ID: 0x031
+  frequency: 1HZ
+  segments:
+    IS_OK:
+      position: [0, 0]
+      values:
+        NOT_OK: 0x0
+        OK: 0x1
+
+# ENDIAN: BIG
+REAR_CAN_NODE_WHEEL_SPEED:
+  ID: 0x032
+  frequency: 50HZ
+  segments:
+    REAR_RIGHT_WHEEL_SPEED:
+      position: [0, 31]
+      values:
+        REAR_RIGHT_WHEEL_SPEED: [0x000, 0xFFFFFFFF]
+    REAR_LEFT_WHEEL_SPEED:
+      position: [32, 63]
+      values:
+        REAR_LEFT_WHEEL_SPEED: [0x000, 0xFFFFFFFF]
+
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+FRONT_CAN_NODE_RAW_VALUES:
+  ID: 0x230
+  frequency: 10HZ
+  segments:
+    RIGHT_THROTTLE_POT:
+      position: [0, 9]
+      values:
+        RIGHT_THROTTLE_POT: [0x00, 0xFF]
+    LEFT_THROTTLE_POT:
+      position: [10, 19]
+      values:
+        LEFT_THROTTLE_POT: [0x00, 0xFF]
+    FRONT_BRAKE_PRESSURE:
+      position: [20, 29]
+      values:
+        FRONT_BRAKE_PRESSURE: [0x00, 0xFF]
+    REAR_BRAKE_PRESSURE:
+      position: [30, 39]
+      values:
+        REAR_BRAKE_PRESSURE: [0x00, 0xFF]
+    STEERING_POT:
+      position: [40, 49]
+      values:
+        STEERING_POT: [0x00, 0xFF]
+
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+FRONT_CAN_NODE_WHEEL_SPEED:
+  ID: 0x231
+  frequency: 50HZ
+  segments:
+    FRONT_RIGHT_WHEEL_SPEED:
+      position: [0, 31]
+      values:
+        FRONT_RIGHT_WHEEL_SPEED: [0x000, 0xFFFFFFFF]
+    FRONT_LEFT_WHEEL_SPEED:
+      position: [32, 63]
+      values:
+        FRONT_LEFT_WHEEL_SPEED: [0x000, 0xFFFFFFFF]
+
+#############################################################
+#                   VCU SPEC                                #
+#           May need to listen to IDs: TODO                 #
+#############################################################
+
+# ENDIAN: BIG
+VCU_BMS_HEARTBEAT:
+  ID: 0x050
+  frequency: 1HZ
+  segments:
+    STATE:
+      position: [0, 0]
+      values:
+        DISCHARGE: 0x0
+
+# ENDIAN: BIG
+VCU_DASH_HEARTBEAT:
+  ID: 0x51
+  frequency: 10HZ
+  segments:
+    RTD_LIGHT:
+      position: [0, 0]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    AMS_LIGHT:
+      position: [1, 1]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    IMD_LIGHT:
+      position: [2, 2]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    HV_LIGHT:
+      position: [3, 3]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    TRACTION_CONTROL:
+      position: [4, 4]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    LIMP_MODE:
+      position: [5, 5]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    LV_WARNING:
+      position: [6, 6]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    ACTIVE_AERO:
+      position: [7, 7]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    REGEN:
+      position: [8, 8]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    SHUTDOWN_ESD_DRAIN:
+      position: [9, 9]
+      values:
+        CLOSED: 0x0
+        OPEN: 0x1
+    SHUTDOWN_BMS:
+      position: [10, 10]
+      values:
+        CLOSED: 0x0
+        OPEN: 0x1
+    SHUTDOWN_IMD:
+      position: [11, 11]
+      values:
+        CLOSED: 0x0
+        OPEN: 0x1
+    SHUTDOWN_BSPD:
+      position: [12, 12]
+      values:
+        CLOSED: 0x0
+        OPEN: 0x1
+    SHUTDOWN_VCU:
+      position: [13, 13]
+      values:
+        CLOSED: 0x0
+        OPEN: 0x1
+    SHUTDOWN_PRECHARGE:
+      position: [14, 14]
+      values:
+        CLOSED: 0x0
+        OPEN: 0x1
+    SHUTDOWN_MASTER_RESET:
+      position: [15, 15]
+      values:
+        CLOSED: 0x0
+        OPEN: 0x1
+    SHUTDOWN_DRIVER_RESET:
+      position: [16, 16]
+      values:
+        CLOSED: 0x0
+        OPEN: 0x1
+    UNUSED:
+      position: [17, 24]
+      values:
+    HEARTBEAT_FRONT_CAN_NODE_DEAD:
+      position: [25, 25]
+      values:
+        ALIVE: 0x0
+        DEAD: 0x1
+    HEARTBEAT_REAR_CAN_NODE_DEAD:
+      position: [26, 26]
+      values:
+        ALIVE: 0x0
+        DEAD: 0x1
+    HEARTBEAT_BMS_DEAD:
+      position: [27, 27]
+      values:
+        ALIVE: 0x0
+        DEAD: 0x1
+    HEARTBEAT_DASH_DEAD:
+      position: [28, 28]
+      values:
+        ALIVE: 0x0
+        DEAD: 0x1
+    HEARTBEAT_MC_DEAD:
+      position: [29, 29]
+      values:
+        ALIVE: 0x0
+        DEAD: 0x1
+    HEARTBEAT_CURRENT_SENSOR_DEAD:
+      position: [30, 30]
+      values:
+        ALIVE: 0x0
+        DEAD: 0x1
+    TSMS_OFF:
+      position: [31, 31]
+      values:
+        ON: 0x0
+        OFF: 0x1
+    RESET_LATCH_OPEN:
+      position: [32, 32]
+      values:
+        CLOSED: 0x0
+        OPEN: 0x1
+    PRECHARGE_RUNNING:
+      position: [33, 33]
+      values:
+        FALSE: 0x0
+        TRUE: 0x1
+    MASTER_RESET_NOT_INITIALIZED:
+      position: [34, 34]
+      values:
+        FALSE: 0x0
+        TRUE: 0x1
+    DRIVER_RESET_NOT_INITIALIZED:
+      position: [35, 35]
+      values:
+        FALSE: 0x0
+        TRUE: 0x1
+    RESERVED:
+      position: [36, 39]
+      values:
+    LV_BATTERY_VOLTAGE:
+      position: [40, 49]
+      values:
+        LV_BATTERY_VOLTAGE: [0x000, 0x3FF]
+
+# ENDIAN: LITTLE
+VCU_MC_MESSAGE:
+  ID: 0x52
+  segments:
+    REG_ID:
+      position: [0, 7]
+      values:
+        MSG_REQUEST: 0x3D
+        MSG_EVENT_REQUEST: 0x51
+        TORQUE_CMD: 0x90
+    DATA_1:
+      position: [8, 15]
+      values:
+        DATA_LOW_BYTE: [0x00, 0xFF]
+    DATA_2:
+      position: [16, 23]
+      values:
+        DATA_HIGH_BYTE: [0x00, 0xFF]
+
+#############################################################
+#                      BMS SPEC                             #
+#           May need to listen to IDs: None                 #
+#############################################################
+
+# Precision:
+# pack voltage: 10 bits
+# pack current: 10 bits
+# cell voltage: 10 bits
+# temperate:    8 bits
+# cell ID:   >:  7 bits
+
+# ENDIAN: BIG
+BMS_HEARTBEAT:
+  ID: 0x060
+  frequency: 1HZ
+  segments:
+    STATE:
+      position: [0, 2]
+      values:
+        INIT: 0x0
+        STANDBY: 0x1
+        CHARGE: 0x2
+        BALANCE: 0x3
+        DISCHARGE: 0x4
+        BATTERY_FAULT: 0x5
+        BMS_FAULT: 0x6
+    SOC_PERCENTAGE:
+      position: [3, 12]
+      values:
+        SOC_PERCENTAGE: [0x000, 0x3FF]
+    FAN_ENABLE:
+      position: [13, 13]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    DCDC_ENABLE:
+      position: [14, 14]
+      values:
+        OFF: 0x0
+        ON: 0x1
+    DCDC_FAULT:
+      position: [15, 15]
+      values:
+        NO_FAULT: 0x0
+        FAULT: 0x1
+
+# ENDIAN: BIG
+#################### DASH_ONLY #########################
+BMS_CELL_TEMPS:
+  ID: 0x160
+  frequency: 1HZ
+  segments:
+    AVE_CELL_TEMP:
+      position: [0, 14]
+      values:
+    MIN_CELL_TEMP:
+      position: [15, 29]
+      values:
+    MIN_CELL_TEMP_ID:
+      position: [30, 38]
+      values:
+    MAX_CELL_TEMP:
+      position: [39, 53]
+      values:
+    MAX_CELL_TEMP_ID:
+      position: [54, 62]
+      values:
+
+# ENDIAN: BIG
+#################### DASH_ONLY #########################
+BMS_PACK_STATUS:
+  ID: 0x161
+  frequency: 10HZ
+  segments:
+    PACK_VOLTAGE:
+      position: [0, 8]
+      values:
+        PACK_VOLTAGE: [0x000, 0x1FF]
+    PACK_CURRENT:
+      position: [9, 19]
+      values:
+        POSITIVE_PACK_CURRENT: [0x000, 0x3FF]
+        NEGATIVE_PACK_CURRENT: [0x400, 0x7FF]
+    AVE_CELL_VOLTAGE:
+      position: [20, 29]
+      values:
+        AVE_CELL_VOLTAGE: [0x000, 0x3FF]
+    MIN_CELL_VOLTAGE:
+      position: [30, 39]
+      values:
+        MIN_CELL_VOLTAGE: [0x000, 0x3FF]
+    MIN_CELL_VOLTAGE_ID:
+      position: [40, 46]
+      values:
+        MIN_CELL_VOLTAGE_ID: [0x00, 0x7F]
+    MAX_CELL_VOLTAGE:
+      position: [47, 56]
+      values:
+        MAX_CELL_VOLTAGE: [0x000, 0x3FF]
+    MAX_CELL_VOLTAGE_ID:
+      position: [57, 63]
+      values:
+        MAX_CELL_VOLTAGE_ID: [0x00, 0x7F]
+
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+BMS_ERRORS:
+  ID: 0x260
+  frequency: 0.1HZ
+  segments:
+    ERROR_TYPE:
+      position: [0, 3]
+      values:
+        NONE: 0x0
+        LTC6804_PEC: 0x1
+        LTC6804_CVST: 0x2
+        LTC6804_OWT: 0x3
+        EEPROM: 0x4
+        CELL_UNDER_VOLTAGE: 0x5
+        CELL_OVER_VOLTAGE: 0x6
+        CELL_UNDER_TEMP: 0x7
+        CELL_OVER_TEMP: 0x8
+        OVER_CURRENT: 0x9
+        CAN: 0xA
+        CONFLICTING_MODE_REQUESTS: 0xB
+        VCU_DEAD: 0xC
+        CONTROL_FLOW: 0xD
+        OTHER: 0xE
+
+#############################################################
+#                      Dash SPEC                             #
+#           May need to listen to IDs: None                 #
+#############################################################
+
+# ENDIAN: BIG
+DASH_HEARTBEAT:
+  ID: 0x70
+  frequency: 1HZ
+  segments:
+    HEARTBEAT_ON:
+      position: [0, 0]
+      values:
+        ON: 0x1
+        OFF: 0x0
+
+# ENDIAN: BIG
+DASH_REQUEST:
+  ID: 0x71
+  segments:
+    REQUEST_TYPE:
+      position: [0, 3]
+      values:
+        NO_REQUEST: 0x0
+        RTD_ENABLE: 0x1
+        RTD_DISABLE: 0x2
+        LIMP_MODE_ENABLE: 0x3
+        LIMP_MODE_DISABLE: 0x4
+        TRACTION_CONTROL_ENABLE: 0x5
+        TRACTION_CONTROL_DISABLE: 0x6
+        ACTIVE_AERO_ENABLE: 0x7
+        ACTIVE_AERO_DISABLE: 0x8
+        FAN_ENABLE: 0x9
+        FAN_DISABLE: 0xA
+        DATA_FLAG: 0xB
+
+#############################################################
+#                   MC SPEC                                 #
+#           May need to listen to IDs: TODO                 #
+#############################################################
+
+# ENDIAN: LITTLE
+#################### LOGGING_ONLY #########################
+MC_RESPONSE:
+  ID: 0x310
+  segments:
+    REG_ID:
+      position: [0, 7]
+      values:
+        CURRENT_CMD: 0x26
+        CURRENT_CMD_AFTER_RAMP: 0x22
+        CURRENT_ACTUAL: 0x20
+        CURRENT_ACTUAL_FILTERED: 0x5F
+        CURRENT_LIMIT_ACTUAL: 0x48
+        CURRENT_LIMIT_MOTOR_TEMP: 0xA2
+        CURRENT_LIMIT_IGBT_TEMP: 0x58
+        TORQUE_CMD: 0x90
+        SPEED_CMD_BEFORE_RAMP: 0x31
+        SPEED_CMD_AFTER_RAMP: 0x32
+        SPEED_ACTUAL_RPM: 0x30
+        SPEED_MAX_RPM: 0xC8
+        OUTPUT_VOLTAGE: 0x8A
+        OUTPUT_VOLTAGE_LIMIT: 0x8B
+        MOTOR_TEMP: 0x49
+        IGBT_TEMP: 0x4A
+        AIR_TEMP: 0x4B
+        STATE: 0x40
+        ERRORS_AND_WARNINGS: 0x8F
+    DATA:
+      position: [8, 23]
+      values:
+        DATA: [0x0000, 0xFFFF]
+
+#############################################################
+#                  Current Sensor SPEC                      #
+#           May need to listen to IDs: None                 #
+#############################################################
+
+# Units of mA
+# ENDIAN: BIG
+CURRENT_SENSOR_CURRENT:
+  ID: 0x521
+  frequency: 20HZ
+  segments:
+    PACK_CURRENT:
+      position: [16, 47]
+      values:
+        PACK_CURRENT: [0x00000000, 0xFFFFFFFF]
+
+# Units of mV
+# ENDIAN: BIG
+CURRENT_SENSOR_VOLTAGE:
+  ID: 0x522
+  frequency: 20HZ
+  segments:
+    PACK_VOLTAGE:
+      position: [16, 47]
+      values:
+        PACK_VOLTAGE: [0x00000000, 0xFFFFFFFF]
+
+# Units of W
+# ENDIAN: BIG
+CURRENT_SENSOR_POWER:
+  ID: 0x526
+  frequency: 20HZ
+  segments:
+    PACK_POWER:
+      position: [16, 47]
+      values:
+        PACK_POWER: [0x00000000, 0xFFFFFFFF]
+
+# Units of Wh
+# ENDIAN: BIG
+CURRENT_SENSOR_ENERGY:
+  ID: 0x528
+  frequency: 20HZ
+  segments:
+    PACK_ENERGY:
+      position: [16, 47]
+      values:
+        PACK_ENERGY: [0x00000000, 0xFFFFFFFF]
+
+#############################################################
+#                  Black Box SPEC                           #
+#           May need to listen to IDs: All                  #
+#############################################################
+
+# Units of mV
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+LV_BATTERY_VOLTAGE:
+  ID: 0x333
+  frequency: 1HZ
+  segments:
+    BATTERY_VOLTAGE:
+      position: [0, 15]
+      values:
+        BATTERY_VOLTAGE: [0x0000, 0xFFFF]
+
+#WARNING: IMU values are stored as floats
+
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+ACCELEROMETER_HORIZONTAL:
+  ID: 0x343
+  frequency: 10HZ
+  segments:
+    X_AXIS:
+      position: [0, 31]
+      values:
+        X_AXIS: [0x00000000, 0xFFFFFFFF]
+    Y_AXIS:
+      position: [32, 63]
+      values:
+        Y_AXIS: [0x00000000, 0xFFFFFFFF]
+
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+ACCELEROMETER_VERTICAL:
+  ID: 0x344
+  frequency: 10HZ
+  segments:
+    Z_AXIS:
+      position: [0, 31]
+      values:
+        Z_AXIS: [0x00000000, 0xFFFFFFFF]
+
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+GYRO_HORIZONTAL:
+  ID: 0x353
+  frequency: 10HZ
+  segments:
+    X_AXIS:
+      position: [0, 31]
+      values:
+        X_AXIS: [0x00000000, 0xFFFFFFFF]
+    Y_AXIS:
+      position: [32, 63]
+      values:
+        Y_AXIS: [0x00000000, 0xFFFFFFFF]
+
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+GYRO_VERTICAL:
+  ID: 0x354
+  frequency: 10HZ
+  segments:
+    Z_AXIS:
+      position: [0, 31]
+      values:
+        Z_AXIS: [0x00000000, 0xFFFFFFFF]
+
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+MAGNETOMETER_HORIZONTAL:
+  ID: 0x363
+  frequency: 10HZ
+  segments:
+    X_AXIS:
+      position: [0, 31]
+      values:
+        X_AXIS: [0x00000000, 0xFFFFFFFF]
+    Y_AXIS:
+      position: [32, 63]
+      values:
+        Y_AXIS: [0x00000000, 0xFFFFFFFF]
+
+# ENDIAN: BIG
+#################### LOGGING_ONLY #########################
+MAGNETOMETER_VERTICAL:
+  ID: 0x364
+  frequency: 10HZ
+  segments:
+    Z_AXIS:
+      position: [0, 31]
+      values:
+        Z_AXIS: [0x00000000, 0xFFFFFFFF]

@@ -1,0 +1,9 @@
+[submodule "scripts/wiringPi"]
+	path = scripts/wiringPi
+	url = git://git.drogon.net/wiringPi
+[submodule "scripts/InertialSenseSDK"]
+	path = scripts/InertialSenseSDK
+	url = https://github.com/inertialsense/InertialSenseSDK.git
+[submodule "scripts/can-utils"]
+	path = scripts/can-utils
+	url = https://github.com/linux-can/can-utils.git
