@@ -10,18 +10,18 @@ FRONT_CAN_NODE_DRIVER_OUTPUT:
   segments:
     REQUESTED_TORQUE:
       position: [0, 15]
-      c_type: int16
+      c_type: int16_t
       values:
         POSITIVE_TORQUE: [0x0000, 0x7FFF]
         NEGATIVE_TORQUE: [0x8000, 0xFFFF]
     BRAKE_PRESSURE:
       position: [16, 23]
-      c_type: uint8
+      c_type: uint8_t
       values:
         BRAKE_PRESSURE: [0x00, 0xFF]
     STEERING_POSITION:
       position: [24, 31]
-      c_type: uint8
+      c_type: uint8_t
       values:
         STEERING_TRAVEL_LEFTWARDS: [0x00, 0xFF]
     THROTTLE_IMPLAUSIBLE:
@@ -70,12 +70,12 @@ REAR_CAN_NODE_WHEEL_SPEED:
   segments:
     REAR_RIGHT_WHEEL_SPEED:
       position: [0, 31]
-      c_type: uint32
+      c_type: uint32_t
       values:
         REAR_RIGHT_WHEEL_SPEED: [0x000, 0xFFFFFFFF]
     REAR_LEFT_WHEEL_SPEED:
       position: [32, 63]
-      c_type: uint32
+      c_type: uint32_t
       values:
         REAR_LEFT_WHEEL_SPEED: [0x000, 0xFFFFFFFF]
 
@@ -87,27 +87,27 @@ FRONT_CAN_NODE_RAW_VALUES:
   segments:
     RIGHT_THROTTLE_POT:
       position: [0, 9]
-      c_type: uint16
+      c_type: uint16_t
       values:
         RIGHT_THROTTLE_POT: [0x00, 0xFF]
     LEFT_THROTTLE_POT:
       position: [10, 19]
-      c_type: uint16
+      c_type: uint16_t
       values:
         LEFT_THROTTLE_POT: [0x00, 0xFF]
     FRONT_BRAKE_PRESSURE:
       position: [20, 29]
-      c_type: uint16
+      c_type: uint16_t
       values:
         FRONT_BRAKE_PRESSURE: [0x00, 0xFF]
     REAR_BRAKE_PRESSURE:
       position: [30, 39]
-      c_type: uint16
+      c_type: uint16_t
       values:
         REAR_BRAKE_PRESSURE: [0x00, 0xFF]
     STEERING_POT:
       position: [40, 49]
-      c_type: uint16
+      c_type: uint16_t
       values:
         STEERING_POT: [0x00, 0xFF]
 
@@ -119,12 +119,12 @@ FRONT_CAN_NODE_WHEEL_SPEED:
   segments:
     FRONT_RIGHT_WHEEL_SPEED:
       position: [0, 31]
-      c_type: uint32
+      c_type: uint32_t
       values:
         FRONT_RIGHT_WHEEL_SPEED: [0x000, 0xFFFFFFFF]
     FRONT_LEFT_WHEEL_SPEED:
       position: [32, 63]
-      c_type: uint32
+      c_type: uint32_t
       values:
         FRONT_LEFT_WHEEL_SPEED: [0x000, 0xFFFFFFFF]
 
@@ -327,7 +327,7 @@ VCU_DASH_HEARTBEAT:
       values:
     LV_BATTERY_VOLTAGE:
       position: [40, 49]
-      c_type: uint16
+      c_type: uint16_t
       values:
         LV_BATTERY_VOLTAGE: [0x000, 0x3FF]
 
@@ -344,12 +344,12 @@ VCU_MC_MESSAGE:
         TORQUE_CMD: 0x90
     DATA_1:
       position: [8, 15]
-      c_type: uint8
+      c_type: uint8_t
       values:
         DATA_LOW_BYTE: [0x00, 0xFF]
     DATA_2:
       position: [16, 23]
-      c_type: uint8
+      c_type: uint8_t
       values:
         DATA_HIGH_BYTE: [0x00, 0xFF]
 
@@ -383,7 +383,7 @@ BMS_HEARTBEAT:
         BMS_FAULT: 0x6
     SOC_PERCENTAGE:
       position: [3, 12]
-      c_type: uint16
+      c_type: uint16_t
       values:
         SOC_PERCENTAGE: [0x000, 0x3FF]
     FAN_ENABLE:
@@ -413,23 +413,23 @@ BMS_CELL_TEMPS:
   segments:
     AVE_CELL_TEMP:
       position: [0, 14]
-      c_type: int16
+      c_type: int16_t
       values:
     MIN_CELL_TEMP:
       position: [15, 29]
-      c_type: int16
+      c_type: int16_t
       values:
     MIN_CELL_TEMP_can_id:
       position: [30, 38]
-      c_type: uint16
+      c_type: uint16_t
       values:
     MAX_CELL_TEMP:
       position: [39, 53]
-      c_type: int16
+      c_type: int16_t
       values:
     MAX_CELL_TEMP_can_id:
       position: [54, 62]
-      c_type: uint16
+      c_type: uint16_t
       values:
 
 #################### DASH_ONLY #########################
@@ -440,38 +440,38 @@ BMS_PACK_STATUS:
   segments:
     PACK_VOLTAGE:
       position: [0, 8]
-      c_type: uint16
+      c_type: uint16_t
       values:
         PACK_VOLTAGE: [0x000, 0x1FF]
     PACK_CURRENT:
       position: [9, 19]
-      c_type: int16
+      c_type: int16_t
       values:
         POSITIVE_PACK_CURRENT: [0x000, 0x3FF]
         NEGATIVE_PACK_CURRENT: [0x400, 0x7FF]
     AVE_CELL_VOLTAGE:
       position: [20, 29]
-      c_type: uint16
+      c_type: uint16_t
       values:
         AVE_CELL_VOLTAGE: [0x000, 0x3FF]
     MIN_CELL_VOLTAGE:
       position: [30, 39]
-      c_type: uint16
+      c_type: uint16_t
       values:
         MIN_CELL_VOLTAGE: [0x000, 0x3FF]
     MIN_CELL_VOLTAGE_can_id:
       position: [40, 46]
-      c_type: uint8
+      c_type: uint8_t
       values:
         MIN_CELL_VOLTAGE_can_id: [0x00, 0x7F]
     MAX_CELL_VOLTAGE:
       position: [47, 56]
-      c_type: uint16
+      c_type: uint16_t
       values:
         MAX_CELL_VOLTAGE: [0x000, 0x3FF]
     MAX_CELL_VOLTAGE_can_id:
       position: [57, 63]
-      c_type: uint8
+      c_type: uint8_t
       values:
         MAX_CELL_VOLTAGE_can_id: [0x00, 0x7F]
 
@@ -574,7 +574,7 @@ MC_RESPONSE:
         ERRORS_AND_WARNINGS: 0x8F
     DATA:
       position: [8, 23]
-      c_type: int16 # Based on position
+      c_type: int16_t # Based on position
       values:
         DATA: [0x0000, 0xFFFF]
 
@@ -591,7 +591,7 @@ CURRENT_SENSOR_CURRENT:
   segments:
     PACK_CURRENT:
       position: [16, 47]
-      c_type: int32
+      c_type: int32_t
       values:
         PACK_CURRENT: [0x00000000, 0xFFFFFFFF]
 
@@ -603,7 +603,7 @@ CURRENT_SENSOR_VOLTAGE:
   segments:
     PACK_VOLTAGE:
       position: [16, 47]
-      c_type: int32
+      c_type: int32_t
       values:
         PACK_VOLTAGE: [0x00000000, 0xFFFFFFFF]
 
@@ -615,7 +615,7 @@ CURRENT_SENSOR_POWER:
   segments:
     PACK_POWER:
       position: [16, 47]
-      c_type: int32
+      c_type: int32_t
       values:
         PACK_POWER: [0x00000000, 0xFFFFFFFF]
 
@@ -627,7 +627,7 @@ CURRENT_SENSOR_ENERGY:
   segments:
     PACK_ENERGY:
       position: [16, 47]
-      c_type: int32
+      c_type: int32_t
       values:
         PACK_ENERGY: [0x00000000, 0xFFFFFFFF]
 
@@ -645,7 +645,7 @@ LV_BATTERY_VOLTAGE:
   segments:
     BATTERY_VOLTAGE:
       position: [0, 15]
-      c_type: uint16
+      c_type: uint16_t
       values:
         BATTERY_VOLTAGE: [0x0000, 0xFFFF]
 
@@ -659,12 +659,12 @@ ACCELEROMETER_HORIZONTAL:
   segments:
     X_AXIS:
       position: [0, 31]
-      c_type: int32 # Based on position
+      c_type: int32_t # Based on position
       values:
         X_AXIS: [0x00000000, 0xFFFFFFFF]
     Y_AXIS:
       position: [32, 63]
-      c_type: int32 # Based on position
+      c_type: int32_t # Based on position
       values:
         Y_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -676,7 +676,7 @@ ACCELEROMETER_VERTICAL:
   segments:
     Z_AXIS:
       position: [0, 31]
-      c_type: int32 # Based on position
+      c_type: int32_t # Based on position
       values:
         Z_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -688,12 +688,12 @@ GYRO_HORIZONTAL:
   segments:
     X_AXIS:
       position: [0, 31]
-      c_type: int32 # Based on position
+      c_type: int32_t # Based on position
       values:
         X_AXIS: [0x00000000, 0xFFFFFFFF]
     Y_AXIS:
       position: [32, 63]
-      c_type: int32 # Based on position
+      c_type: int32_t # Based on position
       values:
         Y_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -705,7 +705,7 @@ GYRO_VERTICAL:
   segments:
     Z_AXIS:
       position: [0, 31]
-      c_type: int32 # Based on position
+      c_type: int32_t # Based on position
       values:
         Z_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -717,12 +717,12 @@ MAGNETOMETER_HORIZONTAL:
   segments:
     X_AXIS:
       position: [0, 31]
-      c_type: int32 # Based on position
+      c_type: int32_t # Based on position
       values:
         X_AXIS: [0x00000000, 0xFFFFFFFF]
     Y_AXIS:
       position: [32, 63]
-      c_type: int32 # Based on position
+      c_type: int32_t # Based on position
       values:
         Y_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -734,6 +734,6 @@ MAGNETOMETER_VERTICAL:
   segments:
     Z_AXIS:
       position: [0, 31]
-      c_type: int32 # Based on position
+      c_type: int32_t # Based on position
       values:
         Z_AXIS: [0x00000000, 0xFFFFFFFF]
