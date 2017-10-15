@@ -574,7 +574,7 @@ MC_RESPONSE:
         ERRORS_AND_WARNINGS: 0x8F
     DATA:
       position: [8, 23]
-      c_type: int16_t # Based on position
+      c_type: int16_t # Guessing by position range
       values:
         DATA: [0x0000, 0xFFFF]
 
@@ -659,12 +659,12 @@ ACCELEROMETER_HORIZONTAL:
   segments:
     X_AXIS:
       position: [0, 31]
-      c_type: int32_t # Based on position
+      c_type: int32_t # Guessing by position range
       values:
         X_AXIS: [0x00000000, 0xFFFFFFFF]
     Y_AXIS:
       position: [32, 63]
-      c_type: int32_t # Based on position
+      c_type: int32_t # Guessing by position range
       values:
         Y_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -676,7 +676,7 @@ ACCELEROMETER_VERTICAL:
   segments:
     Z_AXIS:
       position: [0, 31]
-      c_type: int32_t # Based on position
+      c_type: int32_t # Guessing by position range
       values:
         Z_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -688,12 +688,12 @@ GYRO_HORIZONTAL:
   segments:
     X_AXIS:
       position: [0, 31]
-      c_type: int32_t # Based on position
+      c_type: int32_t # Guessing by position range
       values:
         X_AXIS: [0x00000000, 0xFFFFFFFF]
     Y_AXIS:
       position: [32, 63]
-      c_type: int32_t # Based on position
+      c_type: int32_t # Guessing by position range
       values:
         Y_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -705,7 +705,7 @@ GYRO_VERTICAL:
   segments:
     Z_AXIS:
       position: [0, 31]
-      c_type: int32_t # Based on position
+      c_type: int32_t # Guessing by position range
       values:
         Z_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -717,12 +717,12 @@ MAGNETOMETER_HORIZONTAL:
   segments:
     X_AXIS:
       position: [0, 31]
-      c_type: int32_t # Based on position
+      c_type: int32_t # Guessing by position range
       values:
         X_AXIS: [0x00000000, 0xFFFFFFFF]
     Y_AXIS:
       position: [32, 63]
-      c_type: int32_t # Based on position
+      c_type: int32_t # Guessing by position range
       values:
         Y_AXIS: [0x00000000, 0xFFFFFFFF]
 
@@ -734,6 +734,6 @@ MAGNETOMETER_VERTICAL:
   segments:
     Z_AXIS:
       position: [0, 31]
-      c_type: int32_t # Based on position
+      c_type: int32_t # Guessing by position range
       values:
         Z_AXIS: [0x00000000, 0xFFFFFFFF]
