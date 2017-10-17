@@ -11,7 +11,7 @@ class CANMessage:
         '''
         Returns the bit or range of bits within data.
         '''
-        return int('0b' + bin(self.data)[2:][index], 2)
+        return int('0b' + '{0:064b}'.format(self.data)[index], 2)
         #TODO: Sue python for negative step not working for no reason.
 
     def __str__(self):
@@ -37,4 +37,3 @@ class DAQMessage(CANMessage):
         self.time = parse.number(time)
         self.can_id = parse.number(can_id)
         self.data = parse.number(data)
-        print(hex(self.data))

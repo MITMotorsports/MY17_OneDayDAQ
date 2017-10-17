@@ -24,7 +24,11 @@ class SegmentType:
         '''
         Returns the first contained ValueType in which data is contained.
         '''
-        return next(value for value in self.values if data in self.values[value])
+        try:
+            nm = next(value for value in self.values if data in self.values[value])
+        except(StopIteration):
+            nm = None
+        return nm
 
     def __str__(self):
         '''
