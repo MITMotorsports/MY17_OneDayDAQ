@@ -385,7 +385,7 @@ VCU_MC_MESSAGE:
   can_id: 0x52
   is_big_endian: false
   segments:
-    REG_can_id:
+    REG_ID:
       position: [0, 7]
       c_type: enum
       unit: null
@@ -479,7 +479,7 @@ BMS_CELL_TEMPS:
       c_type: int16_t
       unit: null
       values:
-    MIN_CELL_TEMP_can_id:
+    MIN_CELL_TEMP_ID:
       position: [30, 38]
       c_type: uint16_t
       unit: null
@@ -489,7 +489,7 @@ BMS_CELL_TEMPS:
       c_type: int16_t
       unit: null
       values:
-    MAX_CELL_TEMP_can_id:
+    MAX_CELL_TEMP_ID:
       position: [54, 62]
       c_type: uint16_t
       unit: null
@@ -526,24 +526,24 @@ BMS_PACK_STATUS:
       unit: null
       values:
         MIN_CELL_VOLTAGE: [0x000, 0x3FF]
-    MIN_CELL_VOLTAGE_can_id:
+    MIN_CELL_VOLTAGE_ID:
       position: [40, 46]
       c_type: uint8_t
       unit: null
       values:
-        MIN_CELL_VOLTAGE_can_id: [0x00, 0x7F]
+        MIN_CELL_VOLTAGE_ID: [0x00, 0x7F]
     MAX_CELL_VOLTAGE:
       position: [47, 56]
       c_type: uint16_t
       unit: null
       values:
         MAX_CELL_VOLTAGE: [0x000, 0x3FF]
-    MAX_CELL_VOLTAGE_can_id:
+    MAX_CELL_VOLTAGE_ID:
       position: [57, 63]
       c_type: uint8_t
       unit: null
       values:
-        MAX_CELL_VOLTAGE_can_id: [0x00, 0x7F]
+        MAX_CELL_VOLTAGE_ID: [0x00, 0x7F]
 
 #################### LOGGING_ONLY #########################
 BMS_ERRORS:
@@ -622,7 +622,7 @@ MC_RESPONSE:
   can_id: 0x310
   is_big_endian: false
   segments:
-    REG_can_id:
+    REG_ID:
       position: [0, 7]
       c_type: enum
       unit: null
