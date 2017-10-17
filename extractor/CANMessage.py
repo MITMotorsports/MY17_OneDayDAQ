@@ -1,26 +1,25 @@
 import parse
 
 class CANMessage:
-    """
+    '''
     Represents a logged CAN message with well defined time, ID, and data.
-    """
+    '''
 
-    attributes = ['time', 'can_id', 'data']
-    def __init__(self, time=None, can_id=None, data=None, line=None):
+    attributes = ('time', 'can_id', 'data')
+    def __init__(self, time, can_id, data):
         '''
         Expects can_id, data in a string of capital hex format.
         '''
-        if line:
-            for key, val in parse.log(line).items():
-                setattr(self, key + 'str', val)
-        else:
-            self.timestr = time
-            self.can_idstr = can_id
-            self.datastr = data
-
         # Store our attributes in the format we want them (numbers).
+        self.time = parse.number(time)
+        self.can_id = parse.number(can_id)
+        self.data = parse.number(data)
+
+    @classmethod
+    def from_line(self, line):
+        log = parse.log(line)
         for attr in self.attributes:
-            setattr(self, attr, parse.number(getattr(self, attr + 'str')))
+            setattr(self, attr, parse.number(log[attr]))
 
     def __json__(self):
         return {x: getattr(self, x + 'str') for x in self.attributes}

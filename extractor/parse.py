@@ -6,11 +6,14 @@ SI_MOD = {
     'm' : 1e6,
 }
 
-def frequency(freq_str):
-    """
+def frequency(freq):
+    '''
     Extract frequency of CAN Message from spec.
-    """
-    match = re.search('(\d\.*\d*)*([A-Za-z]*)', freq_str)
+    '''
+    if isinstance(freq, (int, float)):
+        return freq
+
+    match = re.search(r'(\d\.*\d*)*([A-Za-z]*)', freq)
     unit = match.group(2)
     num = float(match.group(1))
     if unit.lower().endswith('hz'):
@@ -33,7 +36,14 @@ def number(num, reverse_endian=False):
 
 def log(line):
     return {
-        'time' : re.search('\(([0-9]+(.[0-9]+)?)\)', line).group(1),
-        'can_id' : '0x' + re.search('([0-9]+)#', line).group(1),
-        'data' : '0x' + re.search('#([0-9, A-F]+)', line).group(1),
+        'time' : re.search(r'\(([0-9]+(.[0-9]+)?)\)', line).group(1),
+        'can_id' : '0x' + re.search(r'([0-9]+)#', line).group(1),
+        'data' : '0x' + re.search(r'#([0-9, A-F]+)', line).group(1),
     }
+
+def node(obj, attributes, nodesrc):
+    '''
+    Extract specifid attributed from a node and set them to an object.
+    '''
+    for attr in attributes:
+        setattr(obj, attr, nodesrc[attr])

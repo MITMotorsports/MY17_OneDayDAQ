@@ -1,9 +1,16 @@
+import parse
+from ValueType import ValueType
+
 class SegmentType:
-    def __init__(self, name=None, c_type=None, position=None, range=None):
-        self.name = name
-        self.c_type = c_type
-        self.position = position
-        self.range = position
+    attributes = ('name', 'c_type', 'position', 'values')
+    def __init__(self, name, c_type, position, values=None):
+        self.name = str(name)
+        self.c_type = str(c_type)
+        self.position = tuple(position)
+        self.values = values if values else {}
+
+        for valnm in self.values:
+            self.values[valnm] = ValueType(valnm, self.values[valnm])
 
     def extract(self, msg):
         data = msg.data[slice(*self.position)]

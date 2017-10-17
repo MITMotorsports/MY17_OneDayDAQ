@@ -1,4 +1,6 @@
-from Race import Race
-a = Race('C:/Users/Nick/Dropbox (MIT)/FSAE/CANData/SkidPad08102017/CAN_logs')
+from CANSpec import CANSpec
 
-a.csv()
+a = CANSpec('exp.yml')
+b = a.parse()
+
+print(b)
