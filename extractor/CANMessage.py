@@ -15,21 +15,12 @@ class CANMessage:
         self.can_id = parse.number(can_id)
         self.data = parse.number(data)
 
-    @classmethod
-    def from_line(self, line):
-        log = parse.log(line)
-        for attr in self.attributes:
-            setattr(self, attr, parse.number(log[attr]))
-
-    def __json__(self):
-        return {x: getattr(self, x + 'str') for x in self.attributes}
-
     def __str__(self):
         '''
         A comma separated representation of a CANMessage's values.
         In the same order as CANMessage.attributes.
         '''
-        return ', '.join(getattr(self, x + 'str') for x in self.attributes)
+        return ', '.join(getattr(self, x) for x in self.attributes)
 
     def __iter__(self):
-        return (getattr(self, x + 'str') for x in self.attributes)
+        return (getattr(self, x) for x in self.attributes)

@@ -1,5 +1,6 @@
-from pathlib import Path
 import csv
+from pathlib import Path
+import parse
 from CANMessage import CANMessage
 
 class Log:
@@ -7,7 +8,7 @@ class Log:
         self.src = Path(source)
 
     def __iter__(self):
-        return (CANMessage.from_line(line) for line in open(self.src, 'r'))
+        return (CANMessage(**parse.log(line)) for line in open(self.src, 'r'))
 
     def csv(self, outpath):
         '''
