@@ -1,5 +1,6 @@
 import parse
 from SegmentType import SegmentType
+from CANMessage import CANMessage
 
 class MessageType:
     attributes = ('name', 'can_id', 'is_big_endian', 'frequency', 'segments')
@@ -18,6 +19,11 @@ class MessageType:
 
     def upsert_segment(self, segment):
         self.segments[segment.name] = segment
+
+    def interpret(self, message):
+        assert isinstance(message, CANMessage)
+
+        return {nm : seg.interpret(message) for nm, seg in self.segments.items()}
 
     def __str__(self):
         '''

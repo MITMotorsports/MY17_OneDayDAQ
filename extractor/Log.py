@@ -1,14 +1,14 @@
 import csv
 from pathlib import Path
 import parse
-from CANMessage import CANMessage
+from CANMessage import DAQMessage
 
 class Log:
     def __init__(self, source):
         self.src = Path(source)
 
     def __iter__(self):
-        return (CANMessage(**parse.log(line)) for line in open(self.src, 'r'))
+        return (DAQMessage(**parse.log(line)) for line in open(self.src, 'r'))
 
     def csv(self, outpath):
         '''
@@ -17,6 +17,6 @@ class Log:
         csvfile = outpath.open('w', newline='')
         writer = csv.writer(csvfile)
 
-        writer.writerow(CANMessage.attributes)
+        writer.writerow(DAQMessage.attributes)
         for message in self:
             writer.writerow(message)

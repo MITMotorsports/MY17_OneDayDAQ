@@ -1,11 +1,12 @@
-import parse
-
 class ValueType:
-    attributes = ['name', 'value']
+    attributes = ['name', 'range']
     def __init__(self, name, value):
         assert isinstance(value, (tuple, list, int))
-        self.name = name
-        self.value = tuple(value) if isinstance(value, list) else value
+        self.name = str(name)
+        self.range = tuple(value) if isinstance(value, list) else (value, value)
+
+    def __contains__(self, data):
+        return self.range[0] <= data <= self.range[1]
 
     def __str__(self):
         '''
