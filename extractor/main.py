@@ -1,6 +1,5 @@
 from CANSpec import CANSpec
 
 a = CANSpec('exp.yml')
-b = a.parse()
 
-print(b)
+print(a.messages['REAR_CAN_NODE_WHEEL_SPEED'])

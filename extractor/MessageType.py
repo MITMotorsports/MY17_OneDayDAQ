@@ -18,3 +18,10 @@ class MessageType:
 
     def upsert_segment(self, segment):
         self.segments[segment.name] = segment
+
+    def __str__(self):
+        '''
+        A comma separated representation of a MessageTypes's values.
+        In the same order as MessageTypes.attributes.
+        '''
+        return ', '.join(str(getattr(self, x)) for x in self.attributes)

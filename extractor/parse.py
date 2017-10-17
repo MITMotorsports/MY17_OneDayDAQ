@@ -1,9 +1,12 @@
 import re
 
 SI_MOD = {
+    'u' : 1e-6,
+    'm' : 1e-3,
     '' : 1,
     'k' : 1e3,
-    'm' : 1e6,
+    'K' : 1e3,
+    'M' : 1e6,
 }
 
 def frequency(freq):
@@ -17,7 +20,9 @@ def frequency(freq):
     unit = match.group(2)
     num = float(match.group(1))
     if unit.lower().endswith('hz'):
-        return num * SI_MOD[unit.lower()[:-2]]
+        return num * SI_MOD[unit[:-2]]
+    elif len(unit) == 0:
+        return num # Assuming no unit implies Hz
     else:
         raise ValueError('Unrecognized frequency unit {}.'.format(unit))
 

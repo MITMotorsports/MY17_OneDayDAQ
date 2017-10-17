@@ -14,3 +14,10 @@ class SegmentType:
 
     def extract(self, msg):
         data = msg.data[slice(*self.position)]
+
+    def __str__(self):
+        '''
+        A comma separated representation of a SegmentType's values.
+        In the same order as SegmentType.attributes.
+        '''
+        return ', '.join(str(getattr(self, x)) for x in self.attributes)
