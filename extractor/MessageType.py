@@ -3,11 +3,11 @@ from SegmentType import SegmentType
 
 class MessageType:
     attributes = ('name', 'can_id', 'is_big_endian', 'frequency', 'segments')
-    def __init__(self, name, can_id, is_big_endian, frequency, segments=None):
+    def __init__(self, name, can_id, is_big_endian, frequency=None, segments=None):
         self.name = str(name)
         self.can_id = parse.number(can_id)
         self.is_big_endian = bool(is_big_endian)
-        self.frequency = parse.frequency(frequency)
+        self.frequency = parse.frequency(frequency) if frequency else None
         self.segments = segments if segments else {}
 
         for segnm in self.segments:

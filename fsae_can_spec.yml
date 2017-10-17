@@ -649,8 +649,6 @@ LV_BATTERY_VOLTAGE:
       values:
         BATTERY_VOLTAGE: [0x0000, 0xFFFF]
 
-#WARNING: IMU values are stored as floats
-
 #################### LOGGING_ONLY #########################
 ACCELEROMETER_HORIZONTAL:
   can_id: 0x343
