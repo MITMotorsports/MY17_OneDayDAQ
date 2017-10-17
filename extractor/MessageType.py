@@ -23,7 +23,7 @@ class MessageType:
     def interpret(self, message):
         assert isinstance(message, CANMessage)
 
-        return {nm : seg.interpret(message) for nm, seg in self.segments.items()}
+        return (self.name, {nm : seg.interpret(message) for nm, seg in self.segments.items()})
 
     def __str__(self):
         '''
