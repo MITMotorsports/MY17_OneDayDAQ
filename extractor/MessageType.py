@@ -3,27 +3,43 @@ from SegmentType import SegmentType
 from CANMessage import CANMessage
 
 class MessageType:
+    '''
+    A specification describing an arbitrary CAN Message's format and contents.
+    '''
+
     attributes = ('name', 'can_id', 'is_big_endian', 'frequency', 'segments')
     def __init__(self, name, can_id, is_big_endian, frequency=None, segments=None):
         self.name = str(name)
         self.can_id = parse.number(can_id)
         self.is_big_endian = bool(is_big_endian)
         self.frequency = parse.frequency(frequency) if frequency else None
-        self.segments = segments if segments else {}
+        self.segments = {}
 
-        for segnm in self.segments:
+        for segnm in segments:
             if isinstance(self.segments[segnm], dict):
-                self.segments[segnm] = SegmentType(segnm, **self.segments[segnm])
-            elif not isinstance(self.segments[segnm], SegmentType):
-                raise ValueError('segments can only be a dictionary of dictionaries or of SegmentType.')
+                self.upsert_segmenttype(SegmentType(name=segnm, **segments[segnm]))
+            else:
+                self.upsert_segmenttype(segments[segnm])
 
-    def upsert_segment(self, segment):
-        self.segments[segment.name] = segment
+    def get_segmenttype(self, seg):
+        '''
+        Given a SegmentType return the corresponding
+        SegmentType in self MessageType.
+        '''
+        assert isinstance(seg, SegmentType)
+        return self.segments[seg.name]
+
+    def upsert_segmenttype(self, segtype):
+        '''
+        Attach, via upsert, a SegmentType to self MessageType.
+        '''
+        assert isinstance(segtype, SegmentType)
+        self.segments[segtype.name] = segtype
 
     def interpret(self, message):
         assert isinstance(message, CANMessage)
 
-        return (self.name, {nm : seg.interpret(message) for nm, seg in self.segments.items()})
+        return (self.name, {seg.name : seg.interpret(message) for seg in self.segments.values()})
 
     def __str__(self):
         '''

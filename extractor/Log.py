@@ -8,7 +8,7 @@ class Log:
         self.src = Path(source)
 
     def __iter__(self):
-        return (DAQMessage(**parse.log(line)) for line in open(self.src, 'r'))
+        return (DAQMessage(**parse.log(line)) for line in open(self.src, 'r') if not line.startswith('#'))
 
     def csv(self, outpath):
         '''

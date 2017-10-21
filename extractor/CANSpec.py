@@ -15,14 +15,29 @@ class CANSpec:
             prem = yaml.safe_load(f)
 
         for msgnm in prem:
-            msgtype = MessageType(msgnm, **prem[msgnm])
-            self.messages[prem[msgnm]['can_id']] = msgtype
+            # TODO: Generalize this in parse module.
+            self.upsert_messagetype(MessageType(name=msgnm, **prem[msgnm]))
 
         return self.messages
+
+    def get_messagetype(self, msg):
+        '''
+        Given a CANMessage or a MessageType return the corresponding
+        MessageType in self CANSpec.
+        '''
+        assert isinstance(msg, (CANMessage, MessageType))
+        return self.messages[msg.can_id]
+
+    def upsert_messagetype(self, msgtype):
+        '''
+        Attach, via upsert, a MessageType to self CANSpec.
+        '''
+        assert isinstance(msgtype, MessageType)
+        self.messages[msgtype.can_id] = msgtype
 
     def interpret(self, message):
         '''
         Interprets a CANMessage instance based on self CAN specification.
         '''
         assert isinstance(message, CANMessage)
-        return self.messages[message.can_id].interpret(message)
+        return self.get_messagetype(message).interpret(message)

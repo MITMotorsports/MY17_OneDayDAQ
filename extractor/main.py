@@ -7,4 +7,4 @@ b = DAQMessage('99', '0x521', 0x000000000408)
 print(a.interpret(b))
 l = Log('./fakelog.log')
 for msg in l:
-    print(msg.time, msg.can_id, a.interpret(msg))
+    print(msg.time, hex(msg.can_id), msg.interpret(a))
