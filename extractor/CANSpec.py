@@ -26,6 +26,7 @@ class CANSpec:
         MessageType in self CANSpec.
         '''
         assert isinstance(msg, (CANMessage, MessageType))
+        print(msg)
         return self.messages[msg.can_id]
 
     def upsert_messagetype(self, msgtype):

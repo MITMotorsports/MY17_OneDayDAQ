@@ -16,7 +16,7 @@ class MessageType:
         self.segments = {}
 
         for segnm in segments:
-            if isinstance(self.segments[segnm], dict):
+            if isinstance(segments[segnm], dict):
                 self.upsert_segmenttype(SegmentType(name=segnm, **segments[segnm]))
             else:
                 self.upsert_segmenttype(segments[segnm])

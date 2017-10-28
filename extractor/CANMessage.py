@@ -19,7 +19,7 @@ class CANMessage:
         A comma separated representation of self's values.
         In the same order as self.attributes.
         '''
-        return ', '.join(getattr(self, x) for x in self.attributes)
+        return ', '.join(str(getattr(self, x)) for x in self.attributes)
 
     def __iter__(self):
         return (getattr(self, x) for x in self.attributes)

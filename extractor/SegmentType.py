@@ -14,11 +14,12 @@ class SegmentType:
         self.position = tuple(position)
         self.values = {}
 
-        for valnm in values:
-            if isinstance(self.values[valnm], dict):
-                self.upsert_valuetype(ValueType(name=valnm, **values[valnm]))
-            else:
-                self.upsert_valuetype(values[valnm])
+        if values:
+            for valnm in values:
+                if isinstance(values[valnm], (int, list)):
+                    self.upsert_valuetype(ValueType(valnm, values[valnm]))
+                else:
+                    self.upsert_valuetype(values[valnm])
 
     def get_valuetype(self, val):
         '''
