@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Installing necessary packages..."
-apt update
-apt install cmake make gcc g++
+sudo apt update
+sudo apt install cmake make gcc g++
 echo "Packages installed!"
 
 echo "Building WiringPi..."
@@ -18,14 +18,14 @@ mkdir build
 cd build
 cmake ..
 make
-usermod -a -G dialout $USER
-usermod -a -G plugdev $USER
+sudo usermod -a -G dialout $USER
+sudo usermod -a -G plugdev $USER
 echo "InertialSense cltool built!"
 
 echo "Building candump..."
 cd /home/pi/can-utils
 make candump
-make install
+make install || echo "It is okay that this failed!"
 echo "candump built!"
 
 echo "Setting up crontab..."
